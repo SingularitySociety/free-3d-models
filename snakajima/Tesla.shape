@@ -1,0 +1,74 @@
+// ShapeScript document
+
+detail 32
+
+define s0 15
+define r1 0.935
+define r2 0.779
+define r3 0.912
+define r4 0.779
+define r5 0.801
+
+define half {
+    extrude {
+        size 1 1 0.3
+        path {
+            point 0 1
+            for 1 to s0 {
+                rotate 0.01
+                point 0 1
+            }
+            point 0 r1
+            for 1 to s0 {
+                rotate -0.01
+                point 0 r1
+            }
+            point 0 1
+        }
+        path {
+            point 0 r2
+            rotate 0.04
+            point 0 r3
+            for 1 to s0 - 4 {
+                rotate 0.01
+                point 0 r3
+            }
+            rotate -0.01
+            curve 0 (r3 + r4 * 2) / 3
+            rotate -0.02
+            point 0 r4
+            rotate -0.01
+            curve 0 (r3 + r4) / 2
+            rotate -0.01 * (s0 - 9)
+            point 0 r5
+            rotate -0.05
+            point 0 0
+            point 0 r2
+        }
+    }
+}
+
+define full {
+    union {
+        half
+        rotate 0 1 0
+        half
+    }
+}
+
+define coin {
+    difference {
+        extrude {
+            size 1.3 1.3 0.15
+            circle {
+                detail 128
+            }
+        }
+        translate 0 -0.55 0
+        full
+    }
+}
+
+rotate 0 0 .5
+scale 0.25
+coin
