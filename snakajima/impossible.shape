@@ -1,0 +1,63 @@
+// Copyright Hirokazu IWASAWA 2003
+// http://puzzlewillbeplayed.com/444/IwahiroAIC/1/
+//
+
+detail 32
+
+define sl 0.01   // slack (percent)
+define sh sl / 2
+
+define piece {
+    union {
+        cube {
+            size 1-sl 1-sl 1-sl
+            color 1 0 0
+            position -sh sh sh
+        }
+        cube {
+            size 2 1-sl 0.5-sl
+            position 0.5 sh -0.25+sh
+            color 0 1 0
+        }
+        difference {
+            cube {
+                size 2 0.5-sl 1-sl
+                position 0.5 -0.25+sh sh
+                color 0 0 1
+            }
+            cube {
+                color 1 0 0
+                position 0.293+sh -0.2 0.5
+                orientation 0 0.25 0
+                color 0 0 1
+            }
+        }
+        difference {
+            cube {
+                color 1 1 0
+                size 0.5-sl 2 1-sl
+                position -0.25-sh -0.5 sh
+            }
+            cube {
+                color 1 1 0
+                size 1 2 1
+                position 0.207-0.25 -sh 0.25
+                orientation 0 0.25 0
+            }
+        }
+    }
+}
+
+scale 12.7 12.7 12.7 // 1 inch cube
+piece
+translate -2 0 0
+scale -1 1 1 
+piece
+translate 0 2 0
+scale 1 -1 1
+piece
+translate -2 0 0
+scale -1 1 1 
+piece
+
+
