@@ -9,9 +9,8 @@ define r3 0.912
 define r4 0.779
 define r5 0.801
 
-define half {
+define tesla_logo_half {
     extrude {
-        size 1 1 0.3
         path {
             point 0 1
             for 1 to s0 {
@@ -48,11 +47,11 @@ define half {
     }
 }
 
-define full {
+define tesla_logo {
     union {
-        half
+        tesla_logo_half
         rotate 0 1 0
-        half
+        tesla_logo_half
     }
 }
 
@@ -65,7 +64,7 @@ define coin {
             }
         }
         translate 0 -0.55 0
-        full
+        tesla_logo
     }
 }
 
